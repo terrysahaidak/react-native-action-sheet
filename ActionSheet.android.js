@@ -31,6 +31,7 @@ type ActionSheetOptions = {
   message?: ?string,
   messageTextStyle?: ?any,
   showSeparators?: ?boolean,
+  groupContainerStyle: ?any,
 };
 
 type ActionGroupProps = {
@@ -48,6 +49,7 @@ type ActionGroupProps = {
   message: ?string,
   messageTextStyle: ?any,
   showSeparators: ?boolean,
+  groupContainerStyle: ?any,
 };
 
 type ActionSheetState = {
@@ -86,6 +88,7 @@ class ActionGroup extends React.Component {
       textStyle,
       tintColor,
       showSeparators,
+      groupContainerStyle,
     } = this.props;
 
     let optionViews = [];
@@ -134,7 +137,7 @@ class ActionGroup extends React.Component {
     }
 
     return (
-      <View style={styles.groupContainer}>
+      <View style={[styles.groupContainer, groupContainerStyle]}>
         {this._renderTitleContent()}
         <ScrollView>{optionViews}</ScrollView>
       </View>
@@ -258,6 +261,7 @@ export default class ActionSheet extends React.Component {
             <ActionGroup
               options={options.options}
               icons={options.icons}
+              groupContainerStyle={options.groupContainerStyle}
               tintIcons={options.tintIcons}
               destructiveButtonIndex={options.destructiveButtonIndex}
               onSelect={this._onSelect}
